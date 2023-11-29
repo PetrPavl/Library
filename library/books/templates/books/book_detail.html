@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="fw-light">{{ book.title }}</h1>
+            <p class="lead text-body-secondary">{{ book.author }}</p>
+        </div>
+    </div>
+</section>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            {% if book.cover_image %}
+            <div class="col-md-6">
+                <img src="{{ book.cover_image.url }}" class="img-fluid" style="max-height: 600px; object-fit: cover;">
+            </div>
+            {% endif %}
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">Автор: {{ book.author }}</p>
+                        <p class="card-text">Жанр: {{ book.genre }}</p>
+                        <p class="card-text">Опис: {{ book.description }}</p>
+                        <p class="card-text">
+                            Статус: {% if book.is_available %}Можна взяти{% else %}Наразі книжка зайнята{% endif %}
+                        </p>
+                        <!-- Тут можуть бути дії, пов'язані з книгою -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
